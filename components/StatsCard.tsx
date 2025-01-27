@@ -6,7 +6,7 @@ type StatsCardProps = {
   title: string;
   helperText: string;
   className: string;
-  value?: number;
+  value?: string;
   loading: boolean;
 };
 

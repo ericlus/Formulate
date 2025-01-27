@@ -13,28 +13,28 @@ function StatsCards({ formStats, loading }: StatsCardsProps) {
         title="Total Visits"
         helperText="All time form visits"
         className="border-blue-500"
-        value={formStats?.visits}
+        value={String(formStats?.visits)}
         loading={loading}
       />
       <StatsCard
         title="Total Submissions"
         helperText="All time form submissions"
         className="border-yellow-500"
-        value={formStats?.submissions}
+        value={String(formStats?.submissions)}
         loading={loading}
       />
       <StatsCard
         title="Submission Rate"
         helperText="Visits that result in form submission"
         className="border-green-500"
-        value={formStats?.submissionRate}
+        value={String(formStats?.submissionRate) + "%"}
         loading={loading}
       />
       <StatsCard
         title="Bounce Rate"
         helperText="Visits that leave without interactions"
         className="border-red-500"
-        value={formStats?.bounceRate}
+        value={String(formStats?.bounceRate) + "%"}
         loading={loading}
       />
     </div>
