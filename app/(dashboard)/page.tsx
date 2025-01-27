@@ -13,7 +13,9 @@ export default function Home() {
       <Separator className="my-6" />
       <h2 className="text-4xl font-bold">Your forms</h2>
       <Separator className="my-6" />
-      <CreateFormButton />
+      <div className="grid gap-3 lg:gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+        <CreateFormButton />
+      </div>
     </div>
   );
 }

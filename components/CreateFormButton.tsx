@@ -58,7 +58,15 @@ function CreateFormButton() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="font-bold">Create new form</Button>
+        <Button
+          variant={"outline"}
+          className="font-bold group border border-primary/20 h-[190px] border-dashed flex flex-col items-center justify-center gap-4"
+        >
+          <BsFileEarmarkPlus className="!h-8 !w-8 text-muted-foreground group-hover:text-primary" />
+          <p className="font-bold text-xl text-muted-foreground group-hover:text-primary">
+            Create new form
+          </p>
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
