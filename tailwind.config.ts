@@ -88,7 +88,11 @@ export default {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out'
   		}
-  	}
+  	},
+	container: {
+		center: true,
+		padding: '2em'
+	}
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;

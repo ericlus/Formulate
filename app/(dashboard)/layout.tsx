@@ -9,7 +9,7 @@ type LayoutProps = {
 
 function Layout({ children }: LayoutProps) {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <nav className="flex items-center justify-between border-b border-border h-16 px-4 py-2">
         <Logo />
         <div className="flex gap-4 items-center">
