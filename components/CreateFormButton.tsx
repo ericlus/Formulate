@@ -63,7 +63,7 @@ function CreateFormButton() {
       <DialogTrigger asChild>
         <Button
           variant={"outline"}
-          className="font-bold group border border-primary/20 h-[190px] border-dashed flex flex-col items-center justify-center gap-4"
+          className="group border border-primary/20 h-[190px] border-dashed flex flex-col items-center justify-center gap-4"
         >
           <BsFileEarmarkPlus className="!h-8 !w-8 text-muted-foreground group-hover:text-primary" />
           <p className="font-bold text-xl text-muted-foreground group-hover:text-primary">

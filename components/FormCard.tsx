@@ -45,7 +45,7 @@ function FormCard({ form }: FormProps) {
           <Button
             asChild
             variant="secondary"
-            className="w-full mt-2 text-sm gap-4 font-bold"
+            className="w-full mt-2 text-sm gap-4"
           >
             <Link href={`/forms/${form.id}`}>
               View submissions{" "}
@@ -57,7 +57,7 @@ function FormCard({ form }: FormProps) {
           <Button
             asChild
             variant="secondary"
-            className="w-full mt-2 text-sm gap-4 font-bold"
+            className="w-full mt-2 text-sm gap-4"
           >
             <Link href={`/builder/${form.id}`}>
               Edit form <FaEdit className="!h-[14px] !w-[14px]" />
