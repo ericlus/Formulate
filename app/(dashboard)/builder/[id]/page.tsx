@@ -1,7 +1,18 @@
+import { GetFormById } from "@/actions/form";
 import React from "react";
 
-function BuilderPage() {
-  return <div>BuilderPage</div>;
+type BuilderPageProps = {
+  params: {
+    id: string;
+  };
+};
+
+async function BuilderPage({ params }: BuilderPageProps) {
+  const form = await GetFormById(Number(params.id));
+  if (!form) {
+    throw new Error("Form not found");
+  }
+  return <div>{form.name}</div>;
 }
 
 export default BuilderPage;
