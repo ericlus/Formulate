@@ -1,3 +1,4 @@
+import DesignerContextProvider from "@/components/context/DesignerContext";
 import { ReactNode } from "react";
 
 type LayoutProps = {
@@ -5,7 +6,11 @@ type LayoutProps = {
 };
 
 function Layout({ children }: LayoutProps) {
-  return <div className="flex flex-grow">{children}</div>;
+  return (
+    <DesignerContextProvider>
+      <div className="flex flex-grow">{children}</div>;
+    </DesignerContextProvider>
+  );
 }
 
 export default Layout;

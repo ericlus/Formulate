@@ -8,6 +8,13 @@ export type FormElement = {
     icon: React.ElementType;
     label: string;
   };
+  construct: (id: string) => FormElementInstance;
+};
+
+export type FormElementInstance = {
+  id: string;
+  type: ElementsType;
+  extraAttributes?: Record<string, any>;
 };
 
 export type FormElementsType = {
