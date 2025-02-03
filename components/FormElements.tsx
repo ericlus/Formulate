@@ -9,6 +9,7 @@ export type FormElement = {
     label: string;
   };
   construct: (id: string) => FormElementInstance;
+  designerComponent: React.FC;
 };
 
 export type FormElementInstance = {

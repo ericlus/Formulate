@@ -9,4 +9,15 @@ export const TextFieldFormElement: FormElement = {
     icon: MdTextFields,
     label: "TextField",
   },
+  construct: (id: string) => ({
+    id,
+    type,
+    extraAttributes: {
+      label: "Text field",
+      helperText: "Helper text",
+      required: false,
+      placeHolder: "Value here...",
+    },
+  }),
+  designerComponent: () => <div>Designer component</div>,
 };
