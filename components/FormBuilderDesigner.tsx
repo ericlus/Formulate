@@ -40,7 +40,7 @@ function FormBuilderDesigner() {
       <div
         ref={droppable.setNodeRef}
         className={cn(
-          "bg-background h-full rounded-xl flex flex-col overflow-y-auto relative p-4",
+          "bg-background h-full rounded-xl flex flex-col overflow-y-auto relative p-4 gap-2",
           droppable.isOver && "ring-2 ring-primary/20"
         )}
       >
@@ -53,11 +53,11 @@ function FormBuilderDesigner() {
           </p>
         )}
         {elements.length > 0 && (
-          <div>
+          <>
             {elements.map((element) => (
               <DesignerElementWrapper key={element.id} element={element} />
             ))}
-          </div>
+          </>
         )}
       </div>
     </div>

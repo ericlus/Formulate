@@ -8,7 +8,7 @@ type LayoutProps = {
 function Layout({ children }: LayoutProps) {
   return (
     <DesignerContextProvider>
-      <div className="flex flex-grow">{children}</div>;
+      <div className="flex flex-grow">{children}</div>
     </DesignerContextProvider>
   );
 }
