@@ -44,7 +44,7 @@ function FormBuilderDesigner() {
           droppable.isOver && "ring-2 ring-primary/20"
         )}
       >
-        {droppable.isOver && (
+        {droppable.isOver && elements.length === 0 && (
           <div className="w-full h-28 bg-primary/20 rounded-xl"></div>
         )}
         {!droppable.isOver && elements.length === 0 && (

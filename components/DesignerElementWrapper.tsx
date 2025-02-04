@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { FormElementInstance, FormElements } from "./FormElements";
+import { useDraggable, useDroppable } from "@dnd-kit/core";
 import { Button } from "./ui/button";
 import { BiSolidTrash } from "react-icons/bi";
 import useDesigner from "./hooks/useDesigner";
@@ -14,15 +15,57 @@ type DesignerElementWrapperProps = {
 function DesignerElementWrapper({ element }: DesignerElementWrapperProps) {
   const { removeElement } = useDesigner();
   const [isMouseOver, setIsMouseOver] = useState(false);
+  const topHalf = useDroppable({
+    id: element.id + "-top",
+    data: {
+      type: element.id,
+      elementId: element.id,
+      isTopHalfDesignerElement: true,
+    },
+  });
+  const bottomHalf = useDroppable({
+    id: element.id + "-bottom",
+    data: {
+      type: element.id,
+      elementId: element.id,
+      isBottomHalfDesignerElement: true,
+    },
+  });
+  const draggable = useDraggable({
+    id: element.id + "-drag-handler",
+    data: {
+      type: element.type,
+      elementId: element.id,
+      isDesignerElement: true,
+    },
+  });
+  if (draggable.isDragging) {
+    return null;
+  }
   const DesignerElement = FormElements[element.type].designerComponent;
   return (
     <div
+      ref={draggable.setNodeRef}
+      {...draggable.listeners}
+      {...draggable.attributes}
       onMouseEnter={() => setIsMouseOver(true)}
       onMouseLeave={() => setIsMouseOver(false)}
-      className={"flex flex-col rounded-md bg-accent/40 p-4 relative border"}
+      className="flex flex-col rounded-md bg-accent/40 p-4 relative border"
     >
-      <div className={"absolute h-1/2 w-full top-0 left-0 rounded-t-md"} />
-      <div className="absolute h-1/2 w-full bottom-0 left-0 rounded-b-md" />
+      <div
+        ref={topHalf.setNodeRef}
+        className={cn(
+          "absolute h-1/2 w-full top-0 left-0 rounded-t-md",
+          topHalf.isOver && "border-t-4 border-t-foreground"
+        )}
+      />
+      <div
+        ref={bottomHalf.setNodeRef}
+        className={cn(
+          "absolute h-1/2 w-full bottom-0 left-0 rounded-b-md",
+          bottomHalf.isOver && "border-b-4 border-b-foreground"
+        )}
+      />
       <div className={cn("pointer-events-none", isMouseOver && "opacity-30")}>
         <DesignerElement elementInstance={element} />
       </div>
