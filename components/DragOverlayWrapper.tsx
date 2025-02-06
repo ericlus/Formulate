@@ -44,7 +44,7 @@ function DragOverlayWrapper() {
     } else {
       const DesignerElement = FormElements[element.type].designerComponent;
       node = (
-        <div className="rounded-md bg-accent/40 p-4 border">
+        <div className="rounded-md bg-accent/40 p-4 border pointer-events-none">
           <DesignerElement elementInstance={element} />
         </div>
       );
