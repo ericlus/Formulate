@@ -8,7 +8,8 @@ import useDesigner from "./hooks/useDesigner";
 import DesignerElementWrapper from "./DesignerElementWrapper";
 
 function FormBuilderDesigner() {
-  const { elements, addElement } = useDesigner();
+  const { elements, addElement, selectedElement, setSelectedElement } =
+    useDesigner();
   const droppable = useDroppable({
     id: "designer-drop-area",
     data: {
@@ -36,7 +37,14 @@ function FormBuilderDesigner() {
   });
 
   return (
-    <div className="p-4 w-full max-w-[920px]">
+    <div
+      className="p-4 w-full max-w-[920px]"
+      onClick={() => {
+        if (selectedElement) {
+          setSelectedElement(null);
+        }
+      }}
+    >
       <div
         ref={droppable.setNodeRef}
         className={cn(
