@@ -38,36 +38,32 @@ function FormBuilderDesigner() {
 
   return (
     <div
-      className="p-4 w-full max-w-[920px]"
+      ref={droppable.setNodeRef}
+      className={cn(
+        "w-full max-w-[920px] bg-background h-full rounded-xl flex flex-col overflow-y-auto relative p-4 gap-2",
+        droppable.isOver && "ring-2 ring-primary/20"
+      )}
       onClick={() => {
         if (selectedElement) {
           setSelectedElement(null);
         }
       }}
     >
-      <div
-        ref={droppable.setNodeRef}
-        className={cn(
-          "bg-background h-full rounded-xl flex flex-col overflow-y-auto relative p-4 gap-2",
-          droppable.isOver && "ring-2 ring-primary/20"
-        )}
-      >
-        {droppable.isOver && elements.length === 0 && (
-          <div className="w-full h-28 bg-primary/20 rounded-xl"></div>
-        )}
-        {!droppable.isOver && elements.length === 0 && (
-          <p className="text-3xl text-muted-foreground font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            Drop here
-          </p>
-        )}
-        {elements.length > 0 && (
-          <>
-            {elements.map((element) => (
-              <DesignerElementWrapper key={element.id} element={element} />
-            ))}
-          </>
-        )}
-      </div>
+      {droppable.isOver && elements.length === 0 && (
+        <div className="w-full h-28 bg-primary/20 rounded-xl"></div>
+      )}
+      {!droppable.isOver && elements.length === 0 && (
+        <p className="text-3xl text-muted-foreground font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          Drop here
+        </p>
+      )}
+      {elements.length > 0 && (
+        <>
+          {elements.map((element) => (
+            <DesignerElementWrapper key={element.id} element={element} />
+          ))}
+        </>
+      )}
     </div>
   );
 }

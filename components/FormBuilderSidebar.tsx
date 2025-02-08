@@ -1,15 +1,18 @@
 import React from "react";
-import SidebarButtonElement from "./SidebarButtonElement";
-import { FormElements } from "./FormElements";
+import useDesigner from "./hooks/useDesigner";
+import FormBuilderSidebarElements from "./FormBuilderSidebarElements";
+import FormBuilderSidebarProperties from "./FormBuilderSidebarProperties";
 
 function FormBuilderSidebar() {
+  const { selectedElement } = useDesigner();
   return (
-    <div className="w-full max-w-[400px] p-4">
-      <div className="bg-background h-full rounded-xl p-4">
-        Elements
-        <SidebarButtonElement formElement={FormElements.TextField} />
-      </div>
-    </div>
+    <aside className="w-full max-w-[400px] bg-background h-full rounded-xl p-4">
+      {!selectedElement ? (
+        <FormBuilderSidebarElements />
+      ) : (
+        <FormBuilderSidebarProperties />
+      )}
+    </aside>
   );
 }
 
