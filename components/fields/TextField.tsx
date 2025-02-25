@@ -53,6 +53,7 @@ export const TextFieldFormElement: FormElement = {
   }),
   designerComponent: DesignerComponent,
   propertiesComponent: PropertiesComponent,
+  formComponent: FormComponent,
 };
 
 type DesignerComponentProps = {
@@ -189,5 +190,22 @@ function PropertiesComponent({ elementInstance }: PropertiesComponentProps) {
         />
       </form>
     </Form>
+  );
+}
+
+function FormComponent({ elementInstance }: DesignerComponentProps) {
+  const element = elementInstance as CustomElementInstance;
+  const { label, helperText, required, placeHolder } = element.extraAttributes;
+  return (
+    <div className="flex flex-col gap-2">
+      <Label className="font-bold">
+        {label}
+        {required && "*"}
+      </Label>
+      <Input placeholder={placeHolder} />
+      {helperText && (
+        <p className="text-muted-foreground text-xs">{helperText}</p>
+      )}
+    </div>
   );
 }

@@ -86,19 +86,13 @@ function FormBuilderDesigner() {
         const activeElement = { ...elements[activeElementIndex] };
         removeElement(activeElementId);
 
-        // Handle edge case for moving the first element
-        if (activeElementIndex === 0) {
-          let indexForNewElement = overElementIndex;
-          if (isOverTopHalfDesignerElement) {
-            indexForNewElement = overElementIndex - 1;
-          }
-          addElement(indexForNewElement, activeElement);
-          return;
-        }
-
         let indexForNewElement = overElementIndex;
-        if (isOverBottomHalfDesignerElement) {
+        if (isOverBottomHalfDesignerElement && activeElementIndex !== 0) {
           indexForNewElement = overElementIndex + 1;
+        }
+        // Handle edge case for moving the first element
+        if (isOverTopHalfDesignerElement && activeElementIndex === 0) {
+          indexForNewElement = overElementIndex - 1;
         }
         addElement(indexForNewElement, activeElement);
         return;
