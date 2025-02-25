@@ -8,8 +8,13 @@ import useDesigner from "./hooks/useDesigner";
 import DesignerElementWrapper from "./DesignerElementWrapper";
 
 function FormBuilderDesigner() {
-  const { elements, addElement, selectedElement, setSelectedElement } =
-    useDesigner();
+  const {
+    elements,
+    addElement,
+    removeElement,
+    selectedElement,
+    setSelectedElement,
+  } = useDesigner();
   const droppable = useDroppable({
     id: "designer-drop-area",
     data: {
@@ -25,13 +30,78 @@ function FormBuilderDesigner() {
       }
       const isDesignerButtonElement =
         active.data?.current?.isDesignerButtonElement;
+      const isOverDesignerDropArea = over.data?.current?.isDesignerDropArea;
 
-      if (isDesignerButtonElement) {
+      // Dropping a sidebar button element over the designer drop area
+      if (isDesignerButtonElement && isOverDesignerDropArea) {
         const type = active.data?.current?.type;
         const newElement = FormElements[type as ElementsType].construct(
           idGenerator()
         );
-        addElement(0, newElement);
+        addElement(elements.length, newElement);
+        return;
+      }
+
+      const isOverTopHalfDesignerElement =
+        over.data?.current?.isTopHalfDesignerElement;
+      const isOverBottomHalfDesignerElement =
+        over.data?.current?.isBottomHalfDesignerElement;
+
+      // Dropping a sidebar button element over a designer element
+      if (
+        isDesignerButtonElement &&
+        (isOverTopHalfDesignerElement || isOverBottomHalfDesignerElement)
+      ) {
+        const type = active.data?.current?.type;
+        const newElement = FormElements[type as ElementsType].construct(
+          idGenerator()
+        );
+        const overElementId = over.data?.current?.elementId;
+        const overElementIndex = elements.findIndex(
+          (el) => el.id === overElementId
+        );
+        let indexForNewElement = overElementIndex;
+        if (isOverBottomHalfDesignerElement) {
+          indexForNewElement = overElementIndex + 1;
+        }
+        addElement(indexForNewElement, newElement);
+        return;
+      }
+
+      const isDesignerElement = active.data?.current?.isDesignerElement;
+
+      // Moving a designer element over a designer element
+      if (
+        isDesignerElement &&
+        (isOverTopHalfDesignerElement || isOverBottomHalfDesignerElement)
+      ) {
+        const overElementId = over.data?.current?.elementId;
+        const activeElementId = active.data?.current?.elementId;
+        const overElementIndex = elements.findIndex(
+          (el) => el.id === overElementId
+        );
+        const activeElementIndex = elements.findIndex(
+          (el) => el.id === activeElementId
+        );
+        const activeElement = { ...elements[activeElementIndex] };
+        removeElement(activeElementId);
+
+        // Handle edge case for moving the first element
+        if (activeElementIndex === 0) {
+          let indexForNewElement = overElementIndex;
+          if (isOverTopHalfDesignerElement) {
+            indexForNewElement = overElementIndex - 1;
+          }
+          addElement(indexForNewElement, activeElement);
+          return;
+        }
+
+        let indexForNewElement = overElementIndex;
+        if (isOverBottomHalfDesignerElement) {
+          indexForNewElement = overElementIndex + 1;
+        }
+        addElement(indexForNewElement, activeElement);
+        return;
       }
     },
   });
