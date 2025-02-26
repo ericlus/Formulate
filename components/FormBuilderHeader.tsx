@@ -25,7 +25,7 @@ function FormBuilderHeader({
         {!isPublished && (
           <>
             <SaveFormButton id={formId} />
-            <PublishFormButton />
+            <PublishFormButton id={formId} />
           </>
         )}
       </div>

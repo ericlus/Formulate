@@ -14,6 +14,7 @@ import {
 } from "@dnd-kit/core";
 import DragOverlayWrapper from "./DragOverlayWrapper";
 import useDesigner from "./hooks/useDesigner";
+import FormBuilderPublished from "./FormBuilderPublished";
 
 type FormBuilderProps = {
   form: Form;
@@ -39,6 +40,10 @@ function FormBuilder({ form }: FormBuilderProps) {
     const elements = JSON.parse(form.content);
     setElements(elements);
   }, [form, setElements]);
+
+  if (form.published) {
+    return <FormBuilderPublished id={form.id} shareUrl={form.shareURL} />;
+  }
 
   return (
     <main className="flex flex-col w-full">
