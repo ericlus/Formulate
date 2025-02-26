@@ -35,7 +35,11 @@ function FormBuilder({ form }: FormBuilderProps) {
 
   return (
     <main className="flex flex-col w-full">
-      <FormBuilderHeader formName={form.name} isPublished={form.published} />
+      <FormBuilderHeader
+        formId={form.id}
+        formName={form.name}
+        isPublished={form.published}
+      />
       <div className="flex flex-grow gap-2 bg-[length:50px_50px] bg-repeat bg-accent bg-[url(/paper.svg)] dark:bg-[url(/paper-dark.svg)]">
         <div className="container flex justify-center py-4 gap-4">
           <DndContext sensors={sensors}>

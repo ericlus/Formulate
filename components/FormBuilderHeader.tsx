@@ -4,11 +4,16 @@ import SaveFormButton from "./SaveFormButton";
 import PublishFormButton from "./PublishFormButton";
 
 type FormBuilderHeaderProps = {
+  formId: number;
   formName: string;
   isPublished: boolean;
 };
 
-function FormBuilderHeader({ formName, isPublished }: FormBuilderHeaderProps) {
+function FormBuilderHeader({
+  formId,
+  formName,
+  isPublished,
+}: FormBuilderHeaderProps) {
   return (
     <nav className="flex justify-between border-b-2 p-4 gap-3 items-center">
       <h2 className="truncate font-medium">
@@ -19,7 +24,7 @@ function FormBuilderHeader({ formName, isPublished }: FormBuilderHeaderProps) {
         <PreviewDialogButton />
         {!isPublished && (
           <>
-            <SaveFormButton />
+            <SaveFormButton id={formId} />
             <PublishFormButton />
           </>
         )}
