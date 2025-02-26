@@ -1,7 +1,7 @@
 "use client";
 
 import { Form } from "@prisma/client";
-import React from "react";
+import React, { useEffect } from "react";
 import FormBuilderHeader from "./FormBuilderHeader";
 import FormBuilderDesigner from "./FormBuilderDesigner";
 import FormBuilderSidebar from "./FormBuilderSidebar";
@@ -13,12 +13,14 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 import DragOverlayWrapper from "./DragOverlayWrapper";
+import useDesigner from "./hooks/useDesigner";
 
 type FormBuilderProps = {
   form: Form;
 };
 
 function FormBuilder({ form }: FormBuilderProps) {
+  const { setElements } = useDesigner();
   const mouseSensor = useSensor(MouseSensor, {
     activationConstraint: {
       distance: 10,
@@ -32,6 +34,11 @@ function FormBuilder({ form }: FormBuilderProps) {
     },
   });
   const sensors = useSensors(mouseSensor, touchSensor);
+
+  useEffect(() => {
+    const elements = JSON.parse(form.content);
+    setElements(elements);
+  }, [form, setElements]);
 
   return (
     <main className="flex flex-col w-full">
