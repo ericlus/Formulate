@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "./ui/button";
 import ShareLinkPopover from "./ShareLinkPopover";
+import VisitLinkButton from "./VisitLinkButton";
 
 type FormSubmissionsProps = {
   formName: string;
@@ -15,7 +16,7 @@ function FormSubmissionsHeader({ formName, shareUrl }: FormSubmissionsProps) {
       </h2>
       <div className="flex items-center gap-2">
         <ShareLinkPopover shareUrl={shareUrl} />
-        <Button className="min-w-32">Visit</Button>
+        <VisitLinkButton shareUrl={shareUrl} />
       </div>
     </nav>
   );

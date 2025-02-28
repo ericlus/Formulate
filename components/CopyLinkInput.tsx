@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { toast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
+import useFormShareUrl from "./hooks/useFormShareUrl";
 
 type CopyLinkInputProps = {
   shareUrl: string;
@@ -12,11 +13,7 @@ type CopyLinkInputProps = {
 };
 
 function CopyLinkInput({ shareUrl, className }: CopyLinkInputProps) {
-  const [formShareUrl, setFormShareUrl] = useState("");
-
-  useEffect(() => {
-    setFormShareUrl(`${window.location.origin}/submit/${shareUrl}`);
-  }, [shareUrl]);
+  const formShareUrl = useFormShareUrl(shareUrl);
 
   return (
     <div className={cn("flex gap-2", className)}>
