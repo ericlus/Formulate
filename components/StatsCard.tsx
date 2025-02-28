@@ -5,7 +5,7 @@ import { Skeleton } from "./ui/skeleton";
 type StatsCardProps = {
   title: string;
   helperText: string;
-  className: string;
+  className?: string;
   value?: string;
   loading: boolean;
 };

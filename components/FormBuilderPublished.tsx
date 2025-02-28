@@ -1,10 +1,9 @@
-import React from "react";
-import { Input } from "./ui/input";
+import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
-import { toast } from "@/hooks/use-toast";
 import Link from "next/link";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import Confetti from "react-confetti";
+import CopyLinkInput from "./CopyLinkInput";
 
 type FormBuilderPublishedProps = {
   id: number;
@@ -12,13 +11,20 @@ type FormBuilderPublishedProps = {
 };
 
 function FormBuilderPublished({ id, shareUrl }: FormBuilderPublishedProps) {
-  const formShareUrl = `${window.location.origin}/submit/${shareUrl}`;
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  }, []);
 
   return (
     <>
       <Confetti
-        width={window.innerWidth}
-        height={window.innerHeight}
+        width={windowSize.width}
+        height={windowSize.height}
         recycle={false}
       />
       <div className="flex flex-col flex-grow items-center justify-center w-full gap-8">
@@ -28,20 +34,7 @@ function FormBuilderPublished({ id, shareUrl }: FormBuilderPublishedProps) {
         <h2 className="text-xl text-muted-foreground">
           Anyone with this link can view and submit the form
         </h2>
-        <div className="flex gap-2 min-w-[446px]">
-          <Input className="w-full" value={formShareUrl} readOnly />
-          <Button
-            onClick={() => {
-              navigator.clipboard.writeText(formShareUrl);
-              toast({
-                title: "Copied!",
-                description: "Link copied to clipboard",
-              });
-            }}
-          >
-            Copy link
-          </Button>
-        </div>
+        <CopyLinkInput shareUrl={shareUrl} className="min-w-[446px]" />
         <div className="flex justify-between min-w-[446px]">
           <Button variant="link" className="p-0" asChild>
             <Link href="/" className="gap-2">
