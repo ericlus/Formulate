@@ -1,5 +1,6 @@
 "use server"
 
+import { calcFormStats } from "@/lib/calcFormStats";
 import { prisma } from "@/lib/prisma";
 import { formSchema, FormSchemaType } from "@/schemas/form";
 import { currentUser } from "@clerk/nextjs/server"
@@ -25,17 +26,7 @@ export async function GetFormStats() {
     const visits = stats._sum.visits || 0;
     const submissions = stats._sum.submissions || 0;
 
-    let submissionRate = 0
-
-    if (visits > 0) {
-        submissionRate = (submissions/visits) * 100
-    }
-
-    const bounceRate = 100 - submissionRate
-
-    return {
-        visits, submissions, submissionRate, bounceRate
-    }
+    return calcFormStats(visits, submissions)
  }
 
  export async function CreateForm(data: FormSchemaType) {

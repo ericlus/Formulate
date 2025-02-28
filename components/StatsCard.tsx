@@ -7,7 +7,7 @@ type StatsCardProps = {
   helperText: string;
   className?: string;
   value?: string;
-  loading: boolean;
+  loading?: boolean;
 };
 
 function StatsCard({

@@ -3,7 +3,7 @@ import StatsCard from "@/components/StatsCard";
 
 type StatsCardsProps = {
   formStats?: Awaited<ReturnType<typeof GetFormStats>>;
-  loading: boolean;
+  loading?: boolean;
 };
 
 function StatsCards({ formStats, loading }: StatsCardsProps) {

@@ -17,7 +17,7 @@ function FormBuilderHeader({
   return (
     <nav className="flex justify-between border-b-2 p-4 gap-3 items-center">
       <h2 className="truncate font-bold">
-        <span className="text-muted-foreground mr-2">Form:</span>
+        <span className="text-muted-foreground mr-2">Form name:</span>
         {formName}
       </h2>
       <div className="flex items-center gap-2">
