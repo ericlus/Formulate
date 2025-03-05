@@ -124,3 +124,19 @@ export async function GetFormStats() {
         }
     })
  }
+
+ export async function GetFormContentByUrl(formUrl: string) {
+    return await prisma.form.update({
+        where: {
+            shareURL: formUrl
+        },
+        select: {
+            content: true
+        },
+        data: {
+            visits: {
+                increment: 1
+            }
+        }
+    })
+ }

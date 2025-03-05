@@ -5,13 +5,14 @@ import {
   ElementsType,
   FormElement,
   FormElementInstance,
+  SubmitInputFunction,
 } from "../FormElements";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useDesigner from "../hooks/useDesigner";
 import {
   Form,
@@ -193,16 +194,37 @@ function PropertiesComponent({ elementInstance }: PropertiesComponentProps) {
   );
 }
 
-function FormComponent({ elementInstance }: DesignerComponentProps) {
+type FormComponentProps = {
+  elementInstance: FormElementInstance;
+  submitInputValue?: SubmitInputFunction;
+};
+
+function FormComponent({
+  elementInstance,
+  submitInputValue,
+}: FormComponentProps) {
   const element = elementInstance as CustomElementInstance;
   const { label, helperText, required, placeHolder } = element.extraAttributes;
+
+  const [inputValue, setInputValue] = useState("");
+
   return (
     <div className="flex flex-col gap-2">
       <Label className="font-bold">
         {label}
         {required && "*"}
       </Label>
-      <Input placeholder={placeHolder} />
+      <Input
+        placeholder={placeHolder}
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        onBlur={(e) => {
+          if (!submitInputValue) {
+            return;
+          }
+          submitInputValue(element.id, e.target.value);
+        }}
+      />
       {helperText && (
         <p className="text-muted-foreground text-xs">{helperText}</p>
       )}
