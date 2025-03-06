@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { FormElementInstance, FormElements } from "./FormElements";
 import { Button } from "./ui/button";
+import { toast } from "@/hooks/use-toast";
 
 type FormSubmitComponentProps = {
   formContent: FormElementInstance[];
@@ -14,12 +15,42 @@ function FormSubmitComponent({
   formUrl,
 }: FormSubmitComponentProps) {
   const formValues = useRef<{ [key: string]: string }>({});
+  const [formErrors, setFormErrors] = useState<{ [key: string]: boolean }>({});
 
   const submitInputValue = (key: string, value: string) => {
     formValues.current[key] = value;
   };
 
-  const submitForm = () => {};
+  const validateForm = useCallback(() => {
+    const newFormErrors: { [key: string]: boolean } = {};
+    for (const field of formContent) {
+      const currentValue = formValues.current[field.id] || "";
+      const valid = FormElements[field.type].validate(field, currentValue);
+      if (!valid) {
+        newFormErrors[field.id] = true;
+      }
+    }
+
+    if (Object.keys(newFormErrors).length > 0) {
+      setFormErrors(newFormErrors);
+      return false;
+    }
+
+    return true;
+  }, [formContent]);
+
+  const submitForm = () => {
+    setFormErrors({});
+    const validForm = validateForm();
+    if (!validForm) {
+      toast({
+        title: "Error",
+        description: "Please fill in required fields",
+        variant: "destructive",
+      });
+      return;
+    }
+  };
 
   return (
     <div className="flex flex-grow py-8 justify-center">
@@ -31,6 +62,8 @@ function FormSubmitComponent({
               key={element.id}
               elementInstance={element}
               submitInputValue={submitInputValue}
+              isInvalid={formErrors[element.id]}
+              defaultValue={formValues.current[element.id]}
             />
           );
         })}

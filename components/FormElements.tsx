@@ -16,7 +16,10 @@ export type FormElement = {
   formComponent: React.FC<{
     elementInstance: FormElementInstance;
     submitInputValue?: SubmitInputFunction;
+    isInvalid?: boolean;
+    defaultValue?: string;
   }>;
+  validate: (formElement: FormElementInstance, currentValue: string) => boolean;
 };
 
 export type FormElementInstance = {

@@ -24,6 +24,7 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Switch } from "../ui/switch";
+import { cn } from "@/lib/utils";
 
 const type: ElementsType = "TextField";
 
@@ -55,6 +56,13 @@ export const TextFieldFormElement: FormElement = {
   designerComponent: DesignerComponent,
   propertiesComponent: PropertiesComponent,
   formComponent: FormComponent,
+  validate: (formElement: FormElementInstance, currentValue: string) => {
+    const element = formElement as CustomElementInstance;
+    if (element.extraAttributes.required) {
+      return currentValue.length > 0;
+    }
+    return true;
+  },
 };
 
 type DesignerComponentProps = {
@@ -197,20 +205,29 @@ function PropertiesComponent({ elementInstance }: PropertiesComponentProps) {
 type FormComponentProps = {
   elementInstance: FormElementInstance;
   submitInputValue?: SubmitInputFunction;
+  isInvalid?: boolean;
+  defaultValue?: string;
 };
 
 function FormComponent({
   elementInstance,
   submitInputValue,
+  isInvalid,
+  defaultValue,
 }: FormComponentProps) {
   const element = elementInstance as CustomElementInstance;
   const { label, helperText, required, placeHolder } = element.extraAttributes;
 
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState(defaultValue || "");
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    setError(!!isInvalid);
+  }, [isInvalid]);
 
   return (
     <div className="flex flex-col gap-2">
-      <Label className="font-bold">
+      <Label className={cn("font-bold", error && "text-red-500")}>
         {label}
         {required && "*"}
       </Label>
@@ -220,6 +237,14 @@ function FormComponent({
         onChange={(e) => setInputValue(e.target.value)}
         onBlur={(e) => {
           if (!submitInputValue) {
+            return;
+          }
+          const validation = TextFieldFormElement.validate(
+            element,
+            e.target.value
+          );
+          setError(!validation);
+          if (!validation) {
             return;
           }
           submitInputValue(element.id, e.target.value);
