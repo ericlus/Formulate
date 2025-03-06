@@ -239,15 +239,16 @@ function FormComponent({
           if (!submitInputValue) {
             return;
           }
+          const trimmedValue = e.target.value.trim();
           const validation = TextFieldFormElement.validate(
             element,
-            e.target.value
+            trimmedValue
           );
           setError(!validation);
           if (!validation) {
             return;
           }
-          submitInputValue(element.id, e.target.value);
+          submitInputValue(element.id, trimmedValue);
         }}
       />
       {helperText && (

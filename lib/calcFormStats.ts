@@ -8,7 +8,10 @@ export function calcFormStats(visits: number, submissions: number) {
     const bounceRate = 100 - submissionRate
 
     return {
-        visits, submissions, submissionRate, bounceRate
-    }
+        visits, 
+        submissions, 
+        submissionRate: Math.round(submissionRate * 100) / 100, 
+        bounceRate: Math.round(bounceRate * 100) / 100 
+    };
 }
 
