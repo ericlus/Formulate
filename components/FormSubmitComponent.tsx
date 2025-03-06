@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useRef, useState, useTransition } from "react";
 import { FormElementInstance, FormElements } from "./FormElements";
 import { Button } from "./ui/button";
 import { toast } from "@/hooks/use-toast";
+import { SubmitForm } from "@/actions/form";
+import { ImSpinner2 } from "react-icons/im";
 
 type FormSubmitComponentProps = {
   formContent: FormElementInstance[];
@@ -16,6 +18,8 @@ function FormSubmitComponent({
 }: FormSubmitComponentProps) {
   const formValues = useRef<{ [key: string]: string }>({});
   const [formErrors, setFormErrors] = useState<{ [key: string]: boolean }>({});
+  const [submitted, setSubmitted] = useState(false);
+  const [pending, startTransition] = useTransition();
 
   const submitInputValue = (key: string, value: string) => {
     formValues.current[key] = value;
@@ -39,7 +43,7 @@ function FormSubmitComponent({
     return true;
   }, [formContent]);
 
-  const submitForm = () => {
+  const submitForm = async () => {
     setFormErrors({});
     const validForm = validateForm();
     if (!validForm) {
@@ -50,11 +54,35 @@ function FormSubmitComponent({
       });
       return;
     }
+    try {
+      const jsonContent = JSON.stringify(formValues.current);
+      await SubmitForm(formUrl, jsonContent);
+      setSubmitted(true);
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Something went wrong",
+        variant: "destructive",
+      });
+    }
   };
+
+  if (submitted) {
+    return (
+      <div className="flex flex-grow justify-center items-center">
+        <div className="max-w-[620px] flex flex-col gap-4 bg-background border rounded p-8 shadow-md">
+          <h1 className="text-2xl font-bold">Form submitted</h1>
+          <p className="text-muted-foreground">
+            Thank you for submitting the form, you can close this page now.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-grow py-8 justify-center">
-      <div className="max-w-[920px] flex flex-col gap-8 flex-grow bg-background border h-full w-full rounded p-8 overflow-y-auto shadow-md">
+      <div className="max-w-[920px] flex flex-col gap-8 bg-background border h-full w-full rounded p-8 overflow-y-auto shadow-md">
         {formContent.map((element) => {
           const FormElement = FormElements[element.type].formComponent;
           return (
@@ -68,8 +96,15 @@ function FormSubmitComponent({
           );
         })}
         <div className="flex justify-center">
-          <Button className="mt-8 w-1/5" onClick={submitForm}>
+          <Button
+            className="mt-8 w-1/5"
+            onClick={() => {
+              startTransition(submitForm);
+            }}
+            disabled={pending}
+          >
             Submit
+            {pending && <ImSpinner2 className="animate-spin" />}
           </Button>
         </div>
       </div>
