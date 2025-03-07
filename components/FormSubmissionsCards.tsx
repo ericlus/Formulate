@@ -41,7 +41,7 @@ async function FormSubmissionsCards({ id }: FormSubmissionsCardsProps) {
   });
 
   return (
-    <div className="container flex flex-col gap-4 pt-10">
+    <div className="container flex flex-col gap-4 py-10">
       <h1 className="text-2xl font-bold">Submissions</h1>
       <div className="grid gap-3 lg:gap-4 grid-cols-1 lg:grid-cols-3">
         {submissions.map((submission) => (

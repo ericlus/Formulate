@@ -143,7 +143,14 @@ function PropertiesComponent({ elementInstance }: PropertiesComponentProps) {
             <FormItem>
               <FormLabel>Label</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input
+                  {...field}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.currentTarget.blur();
+                    }
+                  }}
+                />
               </FormControl>
               <FormDescription>The label of the field.</FormDescription>
               <FormMessage />
@@ -157,7 +164,14 @@ function PropertiesComponent({ elementInstance }: PropertiesComponentProps) {
             <FormItem>
               <FormLabel>Placeholder</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input
+                  {...field}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.currentTarget.blur();
+                    }
+                  }}
+                />
               </FormControl>
               <FormDescription>The placeholder of the field.</FormDescription>
               <FormMessage />
@@ -171,7 +185,14 @@ function PropertiesComponent({ elementInstance }: PropertiesComponentProps) {
             <FormItem>
               <FormLabel>Helper text</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input
+                  {...field}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.currentTarget.blur();
+                    }
+                  }}
+                />
               </FormControl>
               <FormDescription>The helper text of the field.</FormDescription>
               <FormMessage />

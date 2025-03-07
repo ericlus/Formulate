@@ -56,7 +56,7 @@ function DesignerElementWrapper({ element }: DesignerElementWrapperProps) {
         setSelectedElement(element);
       }}
       className={cn(
-        "flex flex-col rounded-md bg-accent/40 p-4 relative border",
+        "flex flex-col rounded-md bg-accent/40 p-4 relative border justify-center",
         isSelectedElement && "ring-2 ring-primary/80"
       )}
     >
