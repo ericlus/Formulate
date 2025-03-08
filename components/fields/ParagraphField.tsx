@@ -1,13 +1,12 @@
 "use client";
 
-import { LuHeading1 } from "react-icons/lu";
+import { BsTextParagraph } from "react-icons/bs";
 import {
   ElementsType,
   FormElement,
   FormElementInstance,
 } from "../FormElements";
 import { Label } from "../ui/label";
-import { Input } from "../ui/input";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,22 +20,23 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
+import { Textarea } from "../ui/textarea";
 
-const type: ElementsType = "TitleField";
+const type: ElementsType = "ParagraphField";
 
 const extraAttributes = {
-  title: "Title field",
+  text: "Text here",
 };
 
 const propertiesSchema = z.object({
-  title: z.string().min(2).max(50),
+  text: z.string().min(2).max(500),
 });
 
-export const TitleFieldFormElement: FormElement = {
+export const ParagraphFieldFormElement: FormElement = {
   type,
   designerButtonElement: {
-    icon: LuHeading1,
-    label: "Title Field",
+    icon: BsTextParagraph,
+    label: "Paragraph Field",
   },
   construct: (id: string) => ({
     id,
@@ -59,13 +59,13 @@ type CustomElementInstance = FormElementInstance & {
 
 function DesignerComponent({ elementInstance }: DesignerComponentProps) {
   const element = elementInstance as CustomElementInstance;
-  const { title } = element.extraAttributes;
+  const { text } = element.extraAttributes;
   return (
     <div className="flex flex-col gap-1">
       <Label className="font-bold text-xs text-muted-foreground">
-        Title field
+        Paragraph field
       </Label>
-      <p className="text-xl">{title}</p>
+      <p>{text}</p>
     </div>
   );
 }
@@ -83,7 +83,7 @@ function PropertiesComponent({ elementInstance }: PropertiesComponentProps) {
     resolver: zodResolver(propertiesSchema),
     mode: "onChange",
     defaultValues: {
-      title: element.extraAttributes.title,
+      text: element.extraAttributes.text,
     },
   });
 
@@ -92,11 +92,11 @@ function PropertiesComponent({ elementInstance }: PropertiesComponentProps) {
   }, [element, form]);
 
   function applyChanges(values: PropertiesFormSchemaType) {
-    const { title } = values;
+    const { text } = values;
     updateElement(element.id, {
       ...element,
       extraAttributes: {
-        title,
+        text,
       },
     });
   }
@@ -112,13 +112,14 @@ function PropertiesComponent({ elementInstance }: PropertiesComponentProps) {
       >
         <FormField
           control={form.control}
-          name="title"
+          name="text"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Title</FormLabel>
+              <FormLabel>Text</FormLabel>
               <FormControl>
-                <Input
+                <Textarea
                   {...field}
+                  rows={5}
                   onKeyDown={(e) => {
                     if (e.key === "Enter") {
                       e.currentTarget.blur();
@@ -141,7 +142,7 @@ type FormComponentProps = {
 
 function FormComponent({ elementInstance }: FormComponentProps) {
   const element = elementInstance as CustomElementInstance;
-  const { title } = element.extraAttributes;
+  const { text } = element.extraAttributes;
 
-  return <p className="text-xl">{title}</p>;
+  return <p>{text}</p>;
 }

@@ -12,6 +12,7 @@ function FormBuilderSidebarElements() {
       <div className="flex gap-4">
         <SidebarButtonElement formElement={FormElements.TitleField} />
         <SidebarButtonElement formElement={FormElements.SubtitleField} />
+        <SidebarButtonElement formElement={FormElements.ParagraphField} />
       </div>
       <p className="text-sm text-muted-foreground my-4">Form elements</p>
       <div className="flex gap-4">

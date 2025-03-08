@@ -16,7 +16,6 @@ import useDesigner from "../hooks/useDesigner";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -66,7 +65,7 @@ function DesignerComponent({ elementInstance }: DesignerComponentProps) {
       <Label className="font-bold text-xs text-muted-foreground">
         Subtitle field
       </Label>
-      <p className="text-md">{title}</p>
+      <p className="text-lg">{title}</p>
     </div>
   );
 }
@@ -116,7 +115,7 @@ function PropertiesComponent({ elementInstance }: PropertiesComponentProps) {
           name="title"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Title</FormLabel>
+              <FormLabel>Subtitle</FormLabel>
               <FormControl>
                 <Input
                   {...field}
@@ -127,7 +126,6 @@ function PropertiesComponent({ elementInstance }: PropertiesComponentProps) {
                   }}
                 />
               </FormControl>
-              <FormDescription>The sub title of the field.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -145,5 +143,5 @@ function FormComponent({ elementInstance }: FormComponentProps) {
   const element = elementInstance as CustomElementInstance;
   const { title } = element.extraAttributes;
 
-  return <p className="text-md">{title}</p>;
+  return <p className="text-lg">{title}</p>;
 }

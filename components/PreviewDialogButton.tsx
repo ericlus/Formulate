@@ -31,7 +31,7 @@ function PreviewDialogButton() {
           </DialogDescription>
         </DialogHeader>
         <div className="flex flex-grow py-4 justify-center bg-[length:50px_50px] bg-repeat bg-accent bg-[url(/paper.svg)] dark:bg-[url(/paper-dark.svg)]">
-          <div className="max-w-[920px] flex flex-col gap-8 flex-grow bg-background h-full w-full rounded-2xl p-8 overflow-y-auto">
+          <div className="max-w-[920px] flex flex-col gap-2 flex-grow bg-background h-full w-full rounded-2xl p-8 overflow-y-auto">
             {elements.map((element) => {
               const FormElement = FormElements[element.type].formComponent;
               return <FormElement key={element.id} elementInstance={element} />;
