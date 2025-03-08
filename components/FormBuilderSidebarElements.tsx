@@ -19,6 +19,8 @@ function FormBuilderSidebarElements() {
       <p className="text-sm text-muted-foreground my-4">Form elements</p>
       <div className="flex gap-4">
         <SidebarButtonElement formElement={FormElements.TextField} />
+        <SidebarButtonElement formElement={FormElements.NumberField} />
+        <SidebarButtonElement formElement={FormElements.TextareaField} />
       </div>
     </div>
   );

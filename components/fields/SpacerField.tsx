@@ -117,7 +117,7 @@ function PropertiesComponent({ elementInstance }: PropertiesComponentProps) {
               <FormLabel>Height (px): {form.watch("height")}</FormLabel>
               <FormControl className="pt-2">
                 <Slider
-                  defaultValue={[field.value]}
+                  value={[field.value]}
                   min={5}
                   max={200}
                   step={1}
