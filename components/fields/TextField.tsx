@@ -46,7 +46,7 @@ export const TextFieldFormElement: FormElement = {
   type,
   designerButtonElement: {
     icon: MdTextFields,
-    label: "TextField",
+    label: "Text Field",
   },
   construct: (id: string) => ({
     id,

@@ -1,6 +1,6 @@
 "use client";
 
-import { LuHeading1 } from "react-icons/lu";
+import { LuHeading2 } from "react-icons/lu";
 import {
   ElementsType,
   FormElement,
@@ -23,21 +23,21 @@ import {
   FormMessage,
 } from "../ui/form";
 
-const type: ElementsType = "TitleField";
+const type: ElementsType = "SubtitleField";
 
 const extraAttributes = {
-  title: "Title field",
+  title: "Subtitle field",
 };
 
 const propertiesSchema = z.object({
   title: z.string().min(2).max(50),
 });
 
-export const TitleFieldFormElement: FormElement = {
+export const SubtitleFieldFormElement: FormElement = {
   type,
   designerButtonElement: {
-    icon: LuHeading1,
-    label: "Title Field",
+    icon: LuHeading2,
+    label: "Subtitle Field",
   },
   construct: (id: string) => ({
     id,
@@ -64,9 +64,9 @@ function DesignerComponent({ elementInstance }: DesignerComponentProps) {
   return (
     <div className="flex flex-col gap-1">
       <Label className="font-bold text-xs text-muted-foreground">
-        Title field
+        Subtitle field
       </Label>
-      <p className="text-xl">{title}</p>
+      <p className="text-md">{title}</p>
     </div>
   );
 }
@@ -127,7 +127,7 @@ function PropertiesComponent({ elementInstance }: PropertiesComponentProps) {
                   }}
                 />
               </FormControl>
-              <FormDescription>The title of the field.</FormDescription>
+              <FormDescription>The sub title of the field.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -145,5 +145,5 @@ function FormComponent({ elementInstance }: FormComponentProps) {
   const element = elementInstance as CustomElementInstance;
   const { title } = element.extraAttributes;
 
-  return <p className="text-xl">{title}</p>;
+  return <p className="text-md">{title}</p>;
 }
