@@ -341,7 +341,7 @@ function FormComponent({
           submitInputValue(element.id, value);
         }}
       >
-        <SelectTrigger className={cn("w-full", error && "border-red-500")}>
+        <SelectTrigger className="w-full">
           <SelectValue placeholder={placeHolder} />
         </SelectTrigger>
         <SelectContent>

@@ -1,6 +1,6 @@
 "use client";
 
-import { BsFillCalendarDateFill } from "react-icons/bs";
+import { IoMdCheckbox } from "react-icons/io";
 import {
   ElementsType,
   FormElement,
@@ -9,7 +9,7 @@ import {
 } from "../FormElements";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
-import { z } from "zod";
+import { string, z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
@@ -25,18 +25,13 @@ import {
 } from "../ui/form";
 import { Switch } from "../ui/switch";
 import { cn } from "@/lib/utils";
-import { Button } from "../ui/button";
-import { CalendarIcon } from "@radix-ui/react-icons";
-import { Popover, PopoverTrigger } from "../ui/popover";
-import { format } from "date-fns";
-import { PopoverContent } from "@radix-ui/react-popover";
-import { Calendar } from "../ui/calendar";
+import { Checkbox } from "../ui/checkbox";
 
-const type: ElementsType = "DateField";
+const type: ElementsType = "CheckboxField";
 
 const extraAttributes = {
-  label: "Date field",
-  helperText: "Pick a date",
+  label: "Checkbox field",
+  helperText: "Helper text",
   required: false,
 };
 
@@ -46,11 +41,11 @@ const propertiesSchema = z.object({
   required: z.boolean().default(false),
 });
 
-export const DateFieldFormElement: FormElement = {
+export const CheckboxFieldFormElement: FormElement = {
   type,
   designerButtonElement: {
-    icon: BsFillCalendarDateFill,
-    label: "Date Field",
+    icon: IoMdCheckbox,
+    label: "Checkbox Field",
   },
   construct: (id: string) => ({
     id,
@@ -63,7 +58,7 @@ export const DateFieldFormElement: FormElement = {
   validate: (formElement: FormElementInstance, currentValue: string) => {
     const element = formElement as CustomElementInstance;
     if (element.extraAttributes.required) {
-      return currentValue.length > 0;
+      return currentValue === "true";
     }
     return true;
   },
@@ -80,22 +75,19 @@ type CustomElementInstance = FormElementInstance & {
 function DesignerComponent({ elementInstance }: DesignerComponentProps) {
   const element = elementInstance as CustomElementInstance;
   const { label, helperText, required } = element.extraAttributes;
+  const id = `checkbox-${element.id}`;
   return (
-    <div className="flex flex-col gap-2">
-      <Label className="font-bold">
-        {label}
-        {required && "*"}
-      </Label>
-      <Button
-        variant="outline"
-        className="w-full justify-start bg-transparent !font-normal"
-      >
-        <CalendarIcon className="mr-2 !h-4 !w-4" />
-        <span className="text-muted-foreground">Pick a date</span>
-      </Button>
-      {helperText && (
-        <p className="text-muted-foreground text-xs">{helperText}</p>
-      )}
+    <div className="flex gap-2.5">
+      <Checkbox id={id} />
+      <div className="flex flex-col gap-1">
+        <Label className="font-bold" htmlFor={id}>
+          {label}
+          {required && "*"}
+        </Label>
+        {helperText && (
+          <p className="text-muted-foreground text-xs">{helperText}</p>
+        )}
+      </div>
     </div>
   );
 }
@@ -224,10 +216,10 @@ function FormComponent({
   defaultValue,
 }: FormComponentProps) {
   const element = elementInstance as CustomElementInstance;
-  const { label, helperText, required, placeHolder } = element.extraAttributes;
+  const { label, helperText, required } = element.extraAttributes;
 
-  const [date, setDate] = useState<Date | undefined>(
-    defaultValue ? new Date(defaultValue) : undefined
+  const [inputValue, setInputValue] = useState(
+    defaultValue === "true" ? true : false
   );
   const [error, setError] = useState(false);
 
@@ -235,49 +227,37 @@ function FormComponent({
     setError(!!isInvalid);
   }, [isInvalid]);
 
+  const id = `checkbox-${element.id}`;
+
   return (
-    <div className="flex flex-col gap-2">
-      <Label className={cn("font-bold", error && "text-red-500")}>
-        {label}
-        {required && "*"}
-      </Label>
-      <Popover>
-        <PopoverTrigger asChild>
-          <Button
-            variant="outline"
-            className={cn(
-              "justify-start text-left !font-normal",
-              !date && "text-muted-foreground"
-            )}
-          >
-            <CalendarIcon className="mr-2 !h-4 !w-4" />
-            {date ? format(date, "PPP") : <span>Pick a date</span>}
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent
-          className="w-auto p-0 bg-background border rounded-md"
-          align="start"
+    <div className="flex gap-2.5">
+      <Checkbox
+        id={id}
+        checked={inputValue}
+        onCheckedChange={(checked) => {
+          let value = checked ? true : false;
+          setInputValue(value);
+          if (!submitInputValue) {
+            return;
+          }
+          const stringValue = value ? "true" : "false";
+          const valid = CheckboxFieldFormElement.validate(element, stringValue);
+          setError(!valid);
+          submitInputValue(element.id, stringValue);
+        }}
+      />
+      <div className="flex flex-col gap-1">
+        <Label
+          className={cn("font-bold", error && "text-red-500")}
+          htmlFor={id}
         >
-          <Calendar
-            mode="single"
-            selected={date}
-            onSelect={(date) => {
-              setDate(date);
-              if (!submitInputValue) {
-                return;
-              }
-              const value = date?.toUTCString() || "";
-              const valid = DateFieldFormElement.validate(element, value);
-              setError(!valid);
-              submitInputValue(element.id, value);
-            }}
-            initialFocus
-          />
-        </PopoverContent>
-      </Popover>
-      {helperText && (
-        <p className="text-muted-foreground text-xs">{helperText}</p>
-      )}
+          {label}
+          {required && "*"}
+        </Label>
+        {helperText && (
+          <p className="text-muted-foreground text-xs">{helperText}</p>
+        )}
+      </div>
     </div>
   );
 }

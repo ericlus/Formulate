@@ -23,6 +23,7 @@ function FormBuilderSidebarElements() {
         <SidebarButtonElement formElement={FormElements.TextareaField} />
         <SidebarButtonElement formElement={FormElements.DateField} />
         <SidebarButtonElement formElement={FormElements.SelectField} />
+        <SidebarButtonElement formElement={FormElements.CheckboxField} />
       </div>
     </>
   );
