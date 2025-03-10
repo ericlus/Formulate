@@ -17,10 +17,11 @@ function FormBuilderSidebarElements() {
         <SidebarButtonElement formElement={FormElements.SpacerField} />
       </div>
       <p className="text-sm text-muted-foreground my-4">Form elements</p>
-      <div className="flex gap-4">
+      <div className="flex flex-wrap gap-4">
         <SidebarButtonElement formElement={FormElements.TextField} />
         <SidebarButtonElement formElement={FormElements.NumberField} />
         <SidebarButtonElement formElement={FormElements.TextareaField} />
+        <SidebarButtonElement formElement={FormElements.DateField} />
       </div>
     </div>
   );

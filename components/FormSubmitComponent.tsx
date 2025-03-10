@@ -81,8 +81,8 @@ function FormSubmitComponent({
   }
 
   return (
-    <div className="flex flex-grow py-8 justify-center">
-      <div className="max-w-[920px] flex flex-col gap-2 bg-background border h-full w-full rounded p-8 overflow-y-auto shadow-md">
+    <div className="flex flex-grow py-8 justify-center overflow-y-auto">
+      <div className="max-w-[920px] flex flex-col gap-2 bg-background border self-start min-h-full w-full rounded p-8 shadow-md">
         {formContent.map((element) => {
           const FormElement = FormElements[element.type].formComponent;
           return (

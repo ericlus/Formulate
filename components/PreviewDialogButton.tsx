@@ -24,14 +24,14 @@ function PreviewDialogButton() {
         </Button>
       </DialogTrigger>
       <DialogContent className="w-screen h-screen max-h-screen max-w-full flex flex-col flex-grow p-0 gap-0">
-        <DialogHeader className="p-4">
+        <DialogHeader className="p-4 border-b">
           <DialogTitle>Form Preview</DialogTitle>
           <DialogDescription>
             This is how your form will look like to your users.
           </DialogDescription>
         </DialogHeader>
-        <div className="flex flex-grow py-4 justify-center bg-[length:50px_50px] bg-repeat bg-accent bg-[url(/paper.svg)] dark:bg-[url(/paper-dark.svg)] overflow-y-auto">
-          <div className="max-w-[920px] flex flex-col gap-2 flex-grow bg-background h-full w-full rounded-2xl p-8 overflow-y-auto">
+        <div className="flex flex-grow py-8 justify-center overflow-y-auto">
+          <div className="max-w-[920px] flex flex-col gap-2 bg-background border self-start min-h-full w-full rounded p-8 shadow-md">
             {elements.map((element) => {
               const FormElement = FormElements[element.type].formComponent;
               return <FormElement key={element.id} elementInstance={element} />;
