@@ -53,7 +53,7 @@ function FormBuilder({ form }: FormBuilderProps) {
         isPublished={form.published}
       />
       <div className="flex flex-grow gap-2 bg-[length:50px_50px] bg-repeat bg-accent bg-[url(/paper.svg)] dark:bg-[url(/paper-dark.svg)]">
-        <div className="container flex justify-center py-4 gap-4">
+        <div className="container flex justify-center py-4 gap-4 relative">
           <DndContext sensors={sensors}>
             <FormBuilderDesigner />
             <FormBuilderSidebar />

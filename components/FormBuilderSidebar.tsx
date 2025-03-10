@@ -6,7 +6,7 @@ import FormBuilderSidebarProperties from "./FormBuilderSidebarProperties";
 function FormBuilderSidebar() {
   const { selectedElement } = useDesigner();
   return (
-    <aside className="w-full max-w-[400px] bg-background h-full rounded-xl p-4">
+    <aside className="w-full max-w-[400px] bg-background max-h-fit rounded-xl p-4 sticky top-2">
       {!selectedElement ? (
         <FormBuilderSidebarElements />
       ) : (

@@ -5,7 +5,7 @@ import { Separator } from "./ui/separator";
 
 function FormBuilderSidebarElements() {
   return (
-    <div>
+    <>
       <p className="text-sm text-foreground/70 py-2">Drag and drop elements</p>
       <Separator className="my-2" />
       <p className="text-sm text-muted-foreground my-4">Layout elements</p>
@@ -22,8 +22,9 @@ function FormBuilderSidebarElements() {
         <SidebarButtonElement formElement={FormElements.NumberField} />
         <SidebarButtonElement formElement={FormElements.TextareaField} />
         <SidebarButtonElement formElement={FormElements.DateField} />
+        <SidebarButtonElement formElement={FormElements.SelectField} />
       </div>
-    </div>
+    </>
   );
 }
 
