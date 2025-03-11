@@ -17,7 +17,7 @@ function Error({ error }: ErrorProps) {
     <div className="flex flex-col items-center justify-center w-full gap-4">
       <h2 className="text-2xl">Something went wrong!</h2>
       <Button asChild>
-        <Link href="/">Go back to home</Link>
+        <Link href="/dashboard">Go back to home</Link>
       </Button>
     </div>
   );

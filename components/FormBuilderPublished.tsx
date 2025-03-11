@@ -37,7 +37,7 @@ function FormBuilderPublished({ id, shareUrl }: FormBuilderPublishedProps) {
         <CopyLinkInput shareUrl={shareUrl} className="min-w-[446px]" />
         <div className="flex justify-between min-w-[446px]">
           <Button variant="link" className="p-0" asChild>
-            <Link href="/" className="gap-2">
+            <Link href="/dashboard" className="gap-2">
               <BsArrowLeft />
               Return to home
             </Link>
