@@ -1,6 +1,6 @@
 import React from "react";
 import { ElementsType } from "./FormElements";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardContent, CardFooter } from "./ui/card";
 import { formatDistance } from "date-fns";
 
 type FormSubmissionCardProps = {
@@ -25,20 +25,12 @@ function FormSubmissionsCard({
   cardSections,
   submission,
 }: FormSubmissionCardProps) {
-  const { id, createdAt, content } = submission;
+  const { createdAt, content } = submission;
   const formContent = JSON.parse(content) as FormContent;
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex flex-col items-center gap-1">
-          <span>Submission #{id}</span>
-          <span className="text-muted-foreground text-sm">
-            {formatDistance(createdAt, new Date(), { addSuffix: true })}
-          </span>
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="flex flex-col gap-6">
+    <Card className="flex flex-col justify-between">
+      <CardContent className="flex flex-col gap-6 pt-6">
         {cardSections.map(({ id, label, required }) => (
           <div key={id} className="flex flex-col gap-1">
             <h2 className="text-sm font-semibold">
@@ -51,6 +43,11 @@ function FormSubmissionsCard({
           </div>
         ))}
       </CardContent>
+      <CardFooter className="flex justify-end">
+        <div className="text-muted-foreground text-sm">
+          {formatDistance(createdAt, new Date(), { addSuffix: true })}
+        </div>
+      </CardFooter>
     </Card>
   );
 }

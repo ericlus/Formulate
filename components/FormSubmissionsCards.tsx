@@ -44,6 +44,7 @@ async function FormSubmissionsCards({ id }: FormSubmissionsCardsProps) {
     <div className="container flex flex-col gap-4 py-10">
       <h1 className="text-2xl font-bold">Submissions</h1>
       <div className="grid gap-3 lg:gap-4 grid-cols-1 lg:grid-cols-3">
+        {submissions.length === 0 && <div>There are no submissions.</div>}
         {submissions.map((submission) => (
           <FormSubmissionsCard
             key={submission.id}

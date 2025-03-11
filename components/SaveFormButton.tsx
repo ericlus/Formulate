@@ -4,7 +4,7 @@ import { IoIosSave } from "react-icons/io";
 import useDesigner from "./hooks/useDesigner";
 import { UpdateFormContent } from "@/actions/form";
 import { toast } from "@/hooks/use-toast";
-import { FaSpinner } from "react-icons/fa";
+import { ImSpinner2 } from "react-icons/im";
 
 function SaveFormButton({ id }: { id: number }) {
   const { elements } = useDesigner();
@@ -37,7 +37,7 @@ function SaveFormButton({ id }: { id: number }) {
     >
       <IoIosSave className="!h-5 !w-5" />
       Save
-      {loading && <FaSpinner className="animate-spin" />}
+      {loading && <ImSpinner2 className="animate-spin" />}
     </Button>
   );
 }

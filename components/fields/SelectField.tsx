@@ -263,12 +263,17 @@ function PropertiesComponent({ elementInstance }: PropertiesComponentProps) {
               <div className="flex flex-col gap-2">
                 {form.watch("options").map((option, index) => (
                   <div
-                    key={option}
+                    key={index}
                     className="flex justify-between items-center gap-1"
                   >
                     <Input
                       placeholder=""
                       value={option}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          e.currentTarget.blur();
+                        }
+                      }}
                       onChange={(e) => {
                         field.value[index] = e.target.value;
                         field.onChange(field.value);
