@@ -22,23 +22,25 @@ async function FormSubmissionsCards({ id }: FormSubmissionsCardsProps) {
   }
 
   const formElements = JSON.parse(form.content) as FormElementInstance[];
-  const cardSections: CardSections[] = [];
   const submissions = form.FormSubmissions;
 
-  formElements.forEach((element) => {
-    switch (element.type) {
-      case "TextField":
-        cardSections.push({
-          id: element.id,
-          label: element.extraAttributes?.label,
-          required: element.extraAttributes?.required,
-          type: element.type,
-        });
-        break;
-      default:
-        break;
-    }
-  });
+  const acceptedTypes = new Set([
+    "TextField",
+    "NumberField",
+    "TextareaField",
+    "DateField",
+    "SelectField",
+    "CheckboxField",
+  ]);
+
+  const cardSections = formElements
+    .filter((element) => acceptedTypes.has(element.type))
+    .map(({ id, type, extraAttributes }) => ({
+      id,
+      label: extraAttributes?.label,
+      required: extraAttributes?.required,
+      type,
+    }));
 
   return (
     <div className="container flex flex-col gap-4 py-10">
