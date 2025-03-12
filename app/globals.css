@@ -6,6 +6,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.dm-sans {
+  font-family: var(--font-dm-sans), sans-serif;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

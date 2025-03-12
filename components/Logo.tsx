@@ -1,15 +1,20 @@
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React from "react";
 
 type LogoProps = {
-  isSignIn?: boolean;
+  isLoggedOut?: boolean;
+  className?: string;
 };
 
-function Logo({ isSignIn }: LogoProps) {
+function Logo({ isLoggedOut, className }: LogoProps) {
   return (
     <Link
-      href={isSignIn ? "/" : "/dashboard"}
-      className="font-bold text-3xl bg-gradient-to-r from-purple-400 to-indigo-400 text-transparent hover:cursor-pointer bg-clip-text"
+      href={isLoggedOut ? "/" : "/dashboard"}
+      className={cn(
+        "font-bold text-3xl bg-gradient-to-r from-purple-400 to-indigo-400 text-transparent hover:cursor-pointer bg-clip-text",
+        className
+      )}
     >
       Formulate
     </Link>
