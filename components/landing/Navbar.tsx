@@ -10,10 +10,11 @@ function Navbar() {
   const { isSignedIn } = useAuth();
 
   return (
-    <div className="flex h-fit w-full justify-between items-center p-4 sm:p-6">
+    <div className="flex h-fit w-full justify-between items-center p-4 sm:p-6 max-w-screen-xl">
       <Logo isLoggedOut className="text-2xl sm:text-3xl" />
       <nav className="items-center flex">
         <Button
+          variant="outline"
           className="py-0 px-3 text-xs sm:py-2 sm:px-4 sm:text-sm"
           asChild
         >
