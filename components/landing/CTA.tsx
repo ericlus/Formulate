@@ -14,7 +14,7 @@ function CTA() {
         </p>
         <div className="flex justify-center mt-10">
           <Button className="px-5 py-3 h-fit">
-            <Link href="/sign-up">Try for free </Link>
+            <Link href="/sign-up">Get started</Link>
           </Button>
         </div>
       </div>

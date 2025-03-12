@@ -1,9 +1,9 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import React, { useState } from "react";
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa6";
+import { motion, AnimatePresence } from "motion/react";
 
 const items = [
   {
@@ -44,7 +44,17 @@ function AccordionItem({ question, answer }: AccordionItemProps) {
         <span className="flex-1 text-lg font-bold">{question}</span>
         {isOpen ? <FaMinus /> : <FaPlus />}
       </div>
-      <div className={cn("mt-4", "hidden", isOpen && "flex")}>{answer}</div>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0, marginTop: 0 }}
+            animate={{ opacity: 1, height: "auto", marginTop: "16px" }}
+            exit={{ opacity: 0, height: 0, marginTop: 0 }}
+          >
+            {answer}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
