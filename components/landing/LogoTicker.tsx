@@ -18,7 +18,7 @@ const images = [
 
 function LogoTicker() {
   return (
-    <div className="py-16 sm:py-[72px] lg:py-24 px-4 sm:px-6">
+    <div className="py-16 sm:py-[72px] lg:py-24 px-4 sm:px-6 max-w-screen-xl">
       <div className="flex justify-center">
         <h2 className="text-xl text-center text-white/70">
           Powered using state of the art technologies
@@ -31,7 +31,7 @@ function LogoTicker() {
               key={alt}
               src={src}
               alt={alt}
-              className="flex-none h-8 w-auto"
+              className="flex-none h-7 sm:h-8 w-auto"
             />
           ))}
         </div>
