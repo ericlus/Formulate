@@ -41,7 +41,7 @@ function AccordionItem({ question, answer }: AccordionItemProps) {
       onClick={() => setIsOpen(!isOpen)}
     >
       <div className="flex items-center">
-        <span className="flex-1 text-lg font-bold">{question}</span>
+        <span className="flex-1 text-lg font-bold mr-3">{question}</span>
         {isOpen ? <FaMinus /> : <FaPlus />}
       </div>
       <AnimatePresence>

@@ -12,7 +12,7 @@ function Navbar() {
   return (
     <div className="bg-black w-full">
       <div className="flex h-fit mx-auto justify-between items-center p-4 sm:p-6 max-w-screen-xl">
-        <Logo isLoggedOut className="text-2xl sm:text-3xl" />
+        <Logo isLoggedOut className="text-3xl" />
         <nav className="items-center flex">
           <Button
             variant="outline"

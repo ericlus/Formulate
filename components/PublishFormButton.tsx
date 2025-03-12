@@ -13,16 +13,20 @@ import {
   AlertDialogTrigger,
 } from "./ui/alert-dialog";
 import { ImSpinner2 } from "react-icons/im";
-import { PublishForm } from "@/actions/form";
+import { PublishForm, UpdateFormContent } from "@/actions/form";
 import { toast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
+import useDesigner from "./hooks/useDesigner";
 
 function PublishFormButton({ id }: { id: number }) {
+  const { elements } = useDesigner();
   const [loading, startTransition] = useTransition();
   const router = useRouter();
 
   const handlePublishForm = async () => {
     try {
+      const jsonElements = JSON.stringify(elements);
+      await UpdateFormContent(id, jsonElements);
       await PublishForm(id);
       toast({
         title: "Success",

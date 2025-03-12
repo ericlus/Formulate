@@ -13,6 +13,8 @@ function ProductShowcase() {
   });
   const rotateX = useTransform(scrollYProgress, [0, 1], [15, 0]);
   const opacity = useTransform(scrollYProgress, [0, 1], [0.1, 1]);
+  const width = useTransform(scrollYProgress, [0, 1], ["90%", "100%"]); // Key fix here
+
   return (
     <div className="bg-gradient-to-b from-black to-[#5D2CA8] py-[72px] sm:py-24 w-full">
       <div className="px-4 sm:px-6">
@@ -26,15 +28,17 @@ function ProductShowcase() {
           </p>
         </div>
         <motion.div
+          className="overflow-hidden mt-14 mx-auto max-w-screen-xl w-full"
           style={{
             opacity,
             rotateX,
             transformPerspective: "800px",
+            width,
           }}
         >
           <Image
             ref={imageRef}
-            className="mt-14 mx-auto max-w-screen-xl w-full"
+            className="w-full object-contain"
             src={ProductScreenshot}
             alt="The product screenshot"
           />
