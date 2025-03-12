@@ -2,13 +2,13 @@ import { GetFormById } from "@/actions/form";
 import FormSubmissions from "@/components/FormSubmissions";
 import React from "react";
 
-type BuilderPageProps = {
-  params: {
+type FormPageProps = {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
-async function FormPage({ params }: BuilderPageProps) {
+async function FormPage({ params }: FormPageProps) {
   const { id } = await params;
   const form = await GetFormById(Number(id));
   if (!form) {

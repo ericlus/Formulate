@@ -3,9 +3,9 @@ import FormBuilder from "@/components/FormBuilder";
 import React from "react";
 
 type BuilderPageProps = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 async function BuilderPage({ params }: BuilderPageProps) {

@@ -4,9 +4,9 @@ import FormSubmitComponent from "@/components/FormSubmitComponent";
 import React from "react";
 
 type SubmitPageProps = {
-  params: {
+  params: Promise<{
     formUrl: string;
-  };
+  }>;
 };
 
 async function SubmitPage({ params }: SubmitPageProps) {
