@@ -26,7 +26,7 @@ const features = [
 
 function Features() {
   return (
-    <div className="px-4 sm:px-6 py-[72px] sm:py-24">
+    <div className="px-4 sm:px-6 py-[72px] sm:py-24 bg-black w-full">
       <h2 className="text-center font-bold text-5xl sm:text-6xl tracking-tighter">
         All-in-One Form Solution
       </h2>
@@ -37,7 +37,7 @@ function Features() {
           optimize forms effortlessly.
         </p>
       </div>
-      <div className="mt-16 flex flex-col sm:flex-row gap-4">
+      <div className="mt-16 flex flex-col sm:flex-row gap-4 justify-center">
         {features.map(({ title, description, icon }) => (
           <div
             key={title}

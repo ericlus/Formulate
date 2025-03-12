@@ -1,3 +1,5 @@
+import CTA from "@/components/landing/CTA";
+import FAQs from "@/components/landing/FAQs";
 import Features from "@/components/landing/Features";
 import Hero from "@/components/landing/Hero";
 import LogoTicker from "@/components/landing/LogoTicker";
@@ -12,6 +14,8 @@ export default function Home() {
       <LogoTicker />
       <Features />
       <ProductShowcase />
+      <FAQs />
+      <CTA />
     </main>
   );
 }
