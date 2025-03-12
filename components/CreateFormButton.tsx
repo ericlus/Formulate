@@ -16,7 +16,6 @@ import { Button } from "./ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -52,7 +51,7 @@ function CreateFormButton() {
     } catch (error) {
       toast({
         title: "Error",
-        description: "Something went wrong, please try again later",
+        description: `Something went wrong, please try again later: ${error}`,
         variant: "destructive",
       });
     }

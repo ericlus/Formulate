@@ -1,4 +1,4 @@
-import React, { startTransition, useTransition } from "react";
+import React, { useTransition } from "react";
 import { Button } from "./ui/button";
 import { MdFileUpload } from "react-icons/md";
 import {
@@ -32,7 +32,7 @@ function PublishFormButton({ id }: { id: number }) {
     } catch (error) {
       toast({
         title: "Error",
-        description: "Something went wrong",
+        description: `Something went wrong: ${error}`,
         variant: "destructive",
       });
     }

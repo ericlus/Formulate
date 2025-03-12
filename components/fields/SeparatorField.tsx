@@ -1,11 +1,7 @@
 "use client";
 
 import { RiSeparator } from "react-icons/ri";
-import {
-  ElementsType,
-  FormElement,
-  FormElementInstance,
-} from "../FormElements";
+import { ElementsType, FormElement } from "../FormElements";
 import { Label } from "../ui/label";
 import { Separator } from "../ui/separator";
 
@@ -27,12 +23,7 @@ export const SeparatorFieldFormElement: FormElement = {
   validate: () => true,
 };
 
-type DesignerComponentProps = {
-  elementInstance: FormElementInstance;
-};
-
-function DesignerComponent({ elementInstance }: DesignerComponentProps) {
-  const element = elementInstance;
+function DesignerComponent() {
   return (
     <div className="flex flex-col gap-1">
       <Label className="font-bold text-xs text-muted-foreground">
@@ -43,11 +34,7 @@ function DesignerComponent({ elementInstance }: DesignerComponentProps) {
   );
 }
 
-type PropertiesComponentProps = {
-  elementInstance: FormElementInstance;
-};
-
-function PropertiesComponent({ elementInstance }: PropertiesComponentProps) {
+function PropertiesComponent() {
   return <p>No properties for this element.</p>;
 }
 

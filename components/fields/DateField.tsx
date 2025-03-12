@@ -224,7 +224,7 @@ function FormComponent({
   defaultValue,
 }: FormComponentProps) {
   const element = elementInstance as CustomElementInstance;
-  const { label, helperText, required, placeHolder } = element.extraAttributes;
+  const { label, helperText, required } = element.extraAttributes;
 
   const [date, setDate] = useState<Date | undefined>(
     defaultValue ? new Date(defaultValue) : undefined

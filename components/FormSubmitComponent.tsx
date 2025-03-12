@@ -61,7 +61,7 @@ function FormSubmitComponent({
     } catch (error) {
       toast({
         title: "Error",
-        description: "Something went wrong",
+        description: `Something went wrong: ${error}`,
         variant: "destructive",
       });
     }

@@ -46,7 +46,7 @@ export type FormElement = {
 export type FormElementInstance = {
   id: string;
   type: ElementsType;
-  extraAttributes?: Record<string, any>;
+  extraAttributes?: Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
 };
 
 export type FormElementsType = {

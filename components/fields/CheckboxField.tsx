@@ -9,7 +9,7 @@ import {
 } from "../FormElements";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
-import { string, z } from "zod";
+import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
@@ -235,7 +235,7 @@ function FormComponent({
         id={id}
         checked={inputValue}
         onCheckedChange={(checked) => {
-          let value = checked ? true : false;
+          const value = checked ? true : false;
           setInputValue(value);
           if (!submitInputValue) {
             return;

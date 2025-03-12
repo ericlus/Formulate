@@ -1,17 +1,10 @@
 import { GetFormWithSubmissions } from "@/actions/form";
 import React from "react";
-import { ElementsType, FormElementInstance } from "./FormElements";
+import { FormElementInstance } from "./FormElements";
 import FormSubmissionsCard from "./FormSubmissionsCard";
 
 type FormSubmissionsCardsProps = {
   id: number;
-};
-
-type CardSections = {
-  id: string;
-  label: string;
-  required: boolean;
-  type: ElementsType;
 };
 
 async function FormSubmissionsCards({ id }: FormSubmissionsCardsProps) {
