@@ -9,7 +9,7 @@ function CTA() {
         <h2 className="font-bold text-5xl sm:text-6xl tracking-tighter">
           Get Instant Access
         </h2>
-        <p className="text-xl text-white/70 mt-5">
+        <p className="text-xl text-white/70 mt-5 sm:mt-10">
           Get started for free and start building custom forms today!
         </p>
         <div className="flex justify-center mt-10">

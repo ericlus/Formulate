@@ -21,7 +21,7 @@ const images = [
 
 function LogoTicker() {
   return (
-    <div className="bg-black w-full py-16 sm:py-[72px] lg:py-24 px-4 sm:px-6">
+    <div className="bg-black w-full pb-16 sm:pb-[72px] xl:py-24 px-4 sm:px-6">
       <div className="max-w-screen-xl mx-auto">
         <div className="flex justify-center">
           <h2 className="text-xl text-center text-white/70">

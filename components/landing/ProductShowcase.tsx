@@ -22,7 +22,7 @@ function ProductShowcase() {
           Intuitive Interface
         </h2>
         <div className="max-w-xl mx-auto">
-          <p className="text-xl text-center text-white/70 mt-5">
+          <p className="text-xl text-center text-white/70 mt-5 sm:mt-10">
             Drag. Drop. Done. Effortless form creation in minutes with a
             user-friendly view.
           </p>
