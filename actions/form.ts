@@ -160,21 +160,34 @@ export async function GetFormStats() {
     })
  }
 
- export async function GetFormWithSubmissions(id: number) {
+ export async function GetFormWithSubmissions(id: number, page: number, pageSize: number) {
     const user = await currentUser();
     if (!user) {
         throw new UserNotFoundErr()
     }
 
-    const form = await prisma.form.findUnique({
-        where: {
-            userId : user.id,
-            id,
-        },
-        include: {
-            FormSubmissions: true
-        }
-    })
-
-    return form
- }
+    const [form, totalSubmissions] = await prisma.$transaction([
+        prisma.form.findUnique({
+            where: { 
+                userId: user.id, 
+                id 
+            },
+            include: {
+                FormSubmissions: {
+                    orderBy: { 
+                        createdAt: 'desc' 
+                    },
+                    skip: (page - 1) * pageSize,
+                    take: pageSize,
+                }
+            }
+        }),
+        prisma.formSubmissions.count({
+            where: { 
+                formId: id 
+            }
+        })
+    ]);
+    
+    return { form, totalSubmissions };
+}
