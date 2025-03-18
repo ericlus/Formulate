@@ -8,7 +8,7 @@
 ![](public/images/product-screenshot.png)
 
 ## Features
-### Effortless Form Building!
+### Effortless Form Building
 
 * Drag, drop, and design custom forms for job applications, surveys, and more — no coding needed.
 
