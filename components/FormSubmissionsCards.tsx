@@ -2,13 +2,22 @@ import { GetFormWithSubmissions } from "@/actions/form";
 import React from "react";
 import { FormElementInstance } from "./FormElements";
 import FormSubmissionsCard from "./FormSubmissionsCard";
+import FormSubmissionsPagination from "./FormSubmissionsPagination";
+
+const PAGE_SIZE = 9;
 
 type FormSubmissionsCardsProps = {
   id: number;
+  page?: string;
 };
 
-async function FormSubmissionsCards({ id }: FormSubmissionsCardsProps) {
-  const form = await GetFormWithSubmissions(id);
+async function FormSubmissionsCards({ id, page }: FormSubmissionsCardsProps) {
+  const pageNumber = page ? Number(page) : 1;
+  const { form, totalSubmissions } = await GetFormWithSubmissions(
+    id,
+    pageNumber,
+    PAGE_SIZE
+  );
 
   if (!form) {
     throw new Error("Form not found");
@@ -48,6 +57,11 @@ async function FormSubmissionsCards({ id }: FormSubmissionsCardsProps) {
           />
         ))}
       </div>
+      <FormSubmissionsPagination
+        page={pageNumber}
+        totalSubmissions={totalSubmissions}
+        pageSize={PAGE_SIZE}
+      />
     </div>
   );
 }
