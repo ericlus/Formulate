@@ -15,8 +15,8 @@ function FormSubmissionsHeader({
   shareUrl,
 }: FormSubmissionsProps) {
   return (
-    <nav className="relative flex justify-end p-8 gap-3 items-center">
-      <h2 className="absolute truncate font-bold text-3xl left-1/2 transform -translate-x-1/2">
+    <nav className="relative flex flex-col xl:flex-row justify-end p-8 gap-3 items-center">
+      <h2 className="xl:absolute truncate max-w-xs sm:max-w-xl xl:max-w-md font-bold text-3xl xl:left-1/2 xl:transform xl:-translate-x-1/2">
         {formName}
       </h2>
       <div className="flex items-center gap-2">
