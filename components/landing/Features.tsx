@@ -20,7 +20,7 @@ const features = [
   {
     title: "Smarter Insights",
     description:
-      "Track visits, submissions, and bounce rates to improve engagement and performance.",
+      "Track visits, submissions, submission rates and bounce rates to improve engagement and performance.",
     icon: <CgInsights className="h-8 w-8" />,
   },
 ];

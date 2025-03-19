@@ -2,6 +2,7 @@ import React from "react";
 import PreviewDialogButton from "./PreviewDialogButton";
 import SaveFormButton from "./SaveFormButton";
 import PublishFormButton from "./PublishFormButton";
+import SettingsButton from "./SettingsButton";
 
 type FormBuilderHeaderProps = {
   formId: number;
@@ -21,6 +22,7 @@ function FormBuilderHeader({
         {formName}
       </h2>
       <div className="flex items-center gap-2">
+        <SettingsButton id={formId} />
         <PreviewDialogButton />
         {!isPublished && (
           <>
