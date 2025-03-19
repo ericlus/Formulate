@@ -15,7 +15,7 @@ function FormSubmissions({ form, page }: FormSubmissionsProps) {
   const formStats = calcFormStats(visits, submissions);
   return (
     <main className="flex flex-col w-full gap-4">
-      <FormSubmissionsHeader formName={name} shareUrl={shareURL} />
+      <FormSubmissionsHeader id={id} formName={name} shareUrl={shareURL} />
       <div className="container">
         <StatsCards formStats={formStats} />
       </div>

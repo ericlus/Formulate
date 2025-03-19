@@ -57,6 +57,27 @@ export async function GetFormStats() {
     return form.id
  }
 
+
+export async function DeleteForm(formId: number) {
+    const user = await currentUser();
+    if (!user) {
+        throw new UserNotFoundErr()
+    }
+
+    try {
+      await prisma.formSubmissions.deleteMany({
+        where: { formId },
+      });
+  
+      return await prisma.form.delete({
+        where: { id: formId },
+      });
+    } catch (error) {
+      console.error('Error deleting form:', error);
+      throw new Error('Failed to delete form.');
+    }
+  }
+
  export async function GetForms() {
     const user = await currentUser();
     if (!user) {
