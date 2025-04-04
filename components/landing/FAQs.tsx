@@ -40,7 +40,7 @@ function AccordionItem({ question, answer }: AccordionItemProps) {
       className="py-7 border-b border-white/30"
       onClick={() => setIsOpen(!isOpen)}
     >
-      <div className="flex items-center">
+      <div className="flex items-center hover:cursor-pointer">
         <span className="flex-1 text-lg font-bold mr-3">{question}</span>
         {isOpen ? <FaMinus /> : <FaPlus />}
       </div>
