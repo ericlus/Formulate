@@ -1,7 +1,6 @@
 import React from "react";
 import SidebarButtonElement from "./SidebarButtonElement";
 import { FormElements } from "./FormElements";
-import { Separator } from "./ui/separator";
 import AiBuilderButton from "./AiBuilderButton";
 
 function FormBuilderSidebarElements() {

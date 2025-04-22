@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useTransition } from "react";
 import {
   Dialog,
   DialogContent,
@@ -13,14 +13,35 @@ import {
 import { Button } from "./ui/button";
 import { IoSparklesSharp } from "react-icons/io5";
 import { Textarea } from "./ui/textarea";
+import { toast } from "@/hooks/use-toast";
+import { ImSpinner2 } from "react-icons/im";
+import { AiChatSession } from "@/models/gemini";
+import useDesigner from "./hooks/useDesigner";
 
 function AiBuilderButton() {
   const [prompt, setPrompt] = useState("");
+  const [open, setOpen] = useState(false);
+  const [loading, startTransition] = useTransition();
+  const { setElements } = useDesigner();
 
-  const handleStartBuilding = () => {};
+  const handleAiPrompt = async () => {
+    try {
+      const response = await AiChatSession(prompt);
+      setElements(response);
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: `Something went wrong, please try again later: ${error}`,
+        variant: "destructive",
+      });
+    } finally {
+      setPrompt("");
+      setOpen(false);
+    }
+  };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="outline">
           <IoSparklesSharp className="!h-5 !w-5" />
@@ -42,7 +63,9 @@ function AiBuilderButton() {
           />
         </div>
         <DialogFooter>
-          <Button onClick={handleStartBuilding}>Start building</Button>
+          <Button onClick={() => startTransition(handleAiPrompt)}>
+            Start building {loading && <ImSpinner2 className="animate-spin" />}
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
