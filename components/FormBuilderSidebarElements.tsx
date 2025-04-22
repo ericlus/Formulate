@@ -2,13 +2,20 @@ import React from "react";
 import SidebarButtonElement from "./SidebarButtonElement";
 import { FormElements } from "./FormElements";
 import { Separator } from "./ui/separator";
+import AiBuilderButton from "./AiBuilderButton";
 
 function FormBuilderSidebarElements() {
   return (
     <>
-      <p className="text-sm text-foreground/70 py-2">Drag and drop elements</p>
-      <Separator className="my-2" />
-      <p className="text-sm text-muted-foreground my-4">Layout elements</p>
+      <div className="flex justify-between">
+        <p className="text-sm font-bold text-foreground/70 py-2">
+          Drag and drop elements
+        </p>
+        <AiBuilderButton />
+      </div>
+      <p className="text-sm font-bold text-muted-foreground my-4">
+        Layout elements
+      </p>
       <div className="flex flex-wrap gap-4">
         <SidebarButtonElement formElement={FormElements.TitleField} />
         <SidebarButtonElement formElement={FormElements.SubtitleField} />
@@ -16,7 +23,9 @@ function FormBuilderSidebarElements() {
         <SidebarButtonElement formElement={FormElements.SeparatorField} />
         <SidebarButtonElement formElement={FormElements.SpacerField} />
       </div>
-      <p className="text-sm text-muted-foreground my-4">Form elements</p>
+      <p className="text-sm font-bold text-muted-foreground my-4">
+        Form elements
+      </p>
       <div className="flex flex-wrap gap-4">
         <SidebarButtonElement formElement={FormElements.TextField} />
         <SidebarButtonElement formElement={FormElements.NumberField} />

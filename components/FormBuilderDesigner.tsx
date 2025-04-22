@@ -6,6 +6,7 @@ import { ElementsType, FormElements } from "./FormElements";
 import { idGenerator } from "@/lib/idGenerator";
 import useDesigner from "./hooks/useDesigner";
 import DesignerElementWrapper from "./DesignerElementWrapper";
+import AiBuilderButton from "./AiBuilderButton";
 
 function FormBuilderDesigner() {
   const {
@@ -117,9 +118,12 @@ function FormBuilderDesigner() {
         <div className="w-full h-28 bg-primary/20 rounded-xl"></div>
       )}
       {!droppable.isOver && elements.length === 0 && (
-        <p className="text-3xl text-muted-foreground font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          Drop here
-        </p>
+        <div className="flex flex-col gap-3 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <p className="text-3xl text-center text-muted-foreground font-bold">
+            Drop here or try
+          </p>
+          <AiBuilderButton />
+        </div>
       )}
       {elements.length > 0 && (
         <>
