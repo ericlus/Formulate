@@ -118,7 +118,7 @@ function FormBuilderDesigner() {
         <div className="w-full h-28 bg-primary/20 rounded-xl"></div>
       )}
       {!droppable.isOver && elements.length === 0 && (
-        <div className="flex flex-col gap-3 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <div className="flex flex-col gap-4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           <p className="text-3xl text-center text-muted-foreground font-bold">
             Drop here or try
           </p>

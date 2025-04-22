@@ -22,11 +22,14 @@ function AiBuilderButton() {
   const [prompt, setPrompt] = useState("");
   const [open, setOpen] = useState(false);
   const [loading, startTransition] = useTransition();
-  const { setElements } = useDesigner();
+  const { elements, setElements } = useDesigner();
 
   const handleAiPrompt = async () => {
     try {
-      const response = await AiChatSession(prompt);
+      const response = await AiChatSession(
+        prompt,
+        elements.length > 0 ? JSON.stringify(elements) : undefined
+      );
       setElements(response);
     } catch (error) {
       toast({
@@ -57,6 +60,7 @@ function AiBuilderButton() {
         </DialogHeader>
         <div className="py-4">
           <Textarea
+            placeholder="Ask anything"
             value={prompt}
             rows={5}
             onChange={(e) => setPrompt(e.target.value)}
