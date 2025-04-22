@@ -27,7 +27,7 @@ function AiBuilderButton() {
   const handleAiPrompt = async () => {
     try {
       const response = await AiChatSession(
-        prompt,
+        prompt.trim(),
         elements.length > 0 ? JSON.stringify(elements) : undefined
       );
       setElements(response);
@@ -67,7 +67,10 @@ function AiBuilderButton() {
           />
         </div>
         <DialogFooter>
-          <Button onClick={() => startTransition(handleAiPrompt)}>
+          <Button
+            disabled={prompt.trim().length === 0}
+            onClick={() => startTransition(handleAiPrompt)}
+          >
             Start building {loading && <ImSpinner2 className="animate-spin" />}
           </Button>
         </DialogFooter>
