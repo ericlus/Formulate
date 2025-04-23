@@ -15,7 +15,7 @@ import { IoSparklesSharp } from "react-icons/io5";
 import { Textarea } from "./ui/textarea";
 import { toast } from "@/hooks/use-toast";
 import { ImSpinner2 } from "react-icons/im";
-import { AiChatSession } from "@/models/gemini";
+import { aiChatSession } from "@/actions/gemini";
 import useDesigner from "./hooks/useDesigner";
 
 function AiBuilderButton() {
@@ -26,7 +26,7 @@ function AiBuilderButton() {
 
   const handleAiPrompt = async () => {
     try {
-      const response = await AiChatSession(
+      const response = await aiChatSession(
         prompt.trim(),
         elements.length > 0 ? JSON.stringify(elements) : undefined
       );
