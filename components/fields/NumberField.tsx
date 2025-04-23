@@ -36,10 +36,10 @@ const extraAttributes = {
 };
 
 const propertiesSchema = z.object({
-  label: z.string().min(2).max(50),
+  label: z.string().min(2).max(200),
   helperText: z.string().max(200),
   required: z.boolean().default(false),
-  placeHolder: z.string().max(50),
+  placeHolder: z.string().max(200),
 });
 
 export const NumberFieldFormElement: FormElement = {
