@@ -116,9 +116,8 @@ function CreateFormButton() {
             disabled={form.formState.isSubmitting}
             className="w-full mt-4"
           >
-            {!form.formState.isSubmitting ? (
-              <span>Save</span>
-            ) : (
+            Save
+            {form.formState.isSubmitting && (
               <ImSpinner2 className="animate-spin" />
             )}
           </Button>

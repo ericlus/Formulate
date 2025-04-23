@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
+  <a href="https://www.formulate.style/">
+    <img src="https://github.com/user-attachments/assets/8c9f4dd5-0bc1-459e-b0a5-1bd5a3fde8bb" alt="Logo">
+  </a>
+  <p align="center"><em>Design custom forms effortlessly, share instantly, and track performance seamlessly.</em></p>
+</div>
 
-## Getting Started
+![](public/images/product-screenshot.png)
 
-First, run the development server:
+## Features
+### Effortless Form Building
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+* Drag, drop, and design custom forms for job applications, surveys, and more — no coding needed.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Instant Sharing
+* Publish your forms with a unique URL, making it easy to share with your audience.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Smarter Insights
+* Track visits, submissions, submission rates and bounce rates to improve engagement and performance.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## FAQs
+<details>
+<summary><strong>How do I create a form with Formulate?</strong></summary>
+  <br>
+Simply drag and drop form elements like text fields, textareas, and selects onto your canvas. Customize each element, then publish your form.
+</details>
 
-## Learn More
+<details>
+<summary><strong>Can I track how my form is performing?</strong></summary>
+  <br>
+Yes! Formulate provides insights on visits, submissions, and bounce rates, on your dashboard helping you measure engagement.
+</details>
 
-To learn more about Next.js, take a look at the following resources:
+<details>
+<summary><strong>Do I need coding skills to use Formulate?</strong></summary>
+  <br>
+Not at all! Formulate’s drag-and-drop tool makes it easy for anyone to build professional forms without writing a single line of code.
+</details>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<details>
+<summary><strong>Is there a limit to how many forms I can create?</strong></summary>
+  <br>
+No, Formulate allows you to create unlimited forms, giving you the flexibility to build as many as you need.
+</details>

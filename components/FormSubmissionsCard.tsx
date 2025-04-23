@@ -54,7 +54,9 @@ function FormSubmissionsCard({
               {label}
               {required && "*"}
             </h2>
-            {formContent[id].length > 0 && getFormContentById(id, type)}
+            {formContent[id] &&
+              formContent[id].length > 0 &&
+              getFormContentById(id, type)}
           </div>
         ))}
       </CardContent>

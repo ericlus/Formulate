@@ -28,7 +28,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <body className={cn(dmSans.variable, "antialiased")}>
-          <NextTopLoader />
+          <NextTopLoader showSpinner={false} />
           <ThemeProvider
             attribute="class"
             defaultTheme="system"

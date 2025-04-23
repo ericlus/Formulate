@@ -9,7 +9,7 @@ const items = [
   {
     question: "How do I create a form with Formulate?",
     answer:
-      "Simply drag and drop form elements like text fields, textareas, and selects onto your canvas. Customize each element, then publish your form.",
+      "Simply use AI builder or drag and drop form elements like text fields, textareas, and selects onto your canvas. Customize each element, then publish your form.",
   },
   {
     question: "Can I track how my form is performing?",
@@ -24,7 +24,7 @@ const items = [
   {
     question: "Is there a limit to how many forms I can create?",
     answer:
-      "No, Formulate allows you to create unlimited forms, giving you the flexibility to build as many as you need.",
+      "Nope! Formulate allows you to create unlimited forms, giving you the flexibility to build as many as you need.",
   },
 ];
 
@@ -37,7 +37,7 @@ function AccordionItem({ question, answer }: AccordionItemProps) {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div
-      className="py-7 border-b border-white/30"
+      className="py-7 border-b border-white/30 hover:cursor-pointer"
       onClick={() => setIsOpen(!isOpen)}
     >
       <div className="flex items-center hover:cursor-pointer">

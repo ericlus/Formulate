@@ -57,6 +57,27 @@ export async function GetFormStats() {
     return form.id
  }
 
+
+export async function DeleteForm(formId: number) {
+    const user = await currentUser();
+    if (!user) {
+        throw new UserNotFoundErr()
+    }
+
+    try {
+      await prisma.formSubmissions.deleteMany({
+        where: { formId },
+      });
+  
+      return await prisma.form.delete({
+        where: { id: formId },
+      });
+    } catch (error) {
+      console.error('Error deleting form:', error);
+      throw new Error('Failed to delete form.');
+    }
+  }
+
  export async function GetForms() {
     const user = await currentUser();
     if (!user) {
@@ -160,21 +181,34 @@ export async function GetFormStats() {
     })
  }
 
- export async function GetFormWithSubmissions(id: number) {
+ export async function GetFormWithSubmissions(id: number, page: number, pageSize: number) {
     const user = await currentUser();
     if (!user) {
         throw new UserNotFoundErr()
     }
 
-    const form = await prisma.form.findUnique({
-        where: {
-            userId : user.id,
-            id,
-        },
-        include: {
-            FormSubmissions: true
-        }
-    })
-
-    return form
- }
+    const [form, totalSubmissions] = await prisma.$transaction([
+        prisma.form.findUnique({
+            where: { 
+                userId: user.id, 
+                id 
+            },
+            include: {
+                FormSubmissions: {
+                    orderBy: { 
+                        createdAt: 'desc' 
+                    },
+                    skip: (page - 1) * pageSize,
+                    take: pageSize,
+                }
+            }
+        }),
+        prisma.formSubmissions.count({
+            where: { 
+                formId: id 
+            }
+        })
+    ]);
+    
+    return { form, totalSubmissions };
+}

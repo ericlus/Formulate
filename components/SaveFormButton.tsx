@@ -30,7 +30,7 @@ function SaveFormButton({ id }: { id: number }) {
   return (
     <Button
       variant="outline"
-      disabled={loading}
+      disabled={loading || elements.length === 0}
       onClick={() => {
         startTransition(updateFormContent);
       }}
