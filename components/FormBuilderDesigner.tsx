@@ -87,13 +87,12 @@ function FormBuilderDesigner() {
         const activeElement = { ...elements[activeElementIndex] };
         removeElement(activeElementId);
 
-        let indexForNewElement = overElementIndex;
-        if (isOverBottomHalfDesignerElement && activeElementIndex !== 0) {
-          indexForNewElement = overElementIndex + 1;
-        }
-        // Handle edge case for moving the first element
-        if (isOverTopHalfDesignerElement && activeElementIndex === 0) {
-          indexForNewElement = overElementIndex - 1;
+        let indexForNewElement = isOverBottomHalfDesignerElement
+          ? overElementIndex + 1
+          : overElementIndex;
+
+        if (activeElementIndex < indexForNewElement) {
+          indexForNewElement -= 1;
         }
         addElement(indexForNewElement, activeElement);
         return;
