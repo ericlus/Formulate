@@ -33,7 +33,7 @@ function Features() {
       </h2>
       <div className="max-w-xl mx-auto">
         <p className="text-center mt-5 sm:mt-10 text-xl text-white/70">
-          From seamless form creation to instant sharing and performance
+          From seamless form creation with AI to instant sharing and performance
           tracking, Formulate gives you everything you need to build, share, and
           optimize forms effortlessly.
         </p>

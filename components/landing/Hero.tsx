@@ -17,7 +17,7 @@ function Hero() {
         </h1>
         <div className="flex justify-center">
           <p className="text-center text-xl mt-5 sm:mt-10 max-w-xs sm:max-w-md">
-            Design custom forms effortlessly, share instantly, and track
+            Build forms with AI effortlessly, share instantly, and track
             performance seamlessly.
           </p>
         </div>
